@@ -1,6 +1,7 @@
 <!doctype html>
 <html lang="en">
   <head>
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' 'unsafe-eval' https://connect.facebook.net; style-src 'self' 'unsafe-inline'; img-src 'self' data: https://www.facebook.com; font-src 'self' data:; frame-src 'self'; connect-src 'self'" />
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Agência Midas - Tráfego Pago para Apostas Online | Depositantes Todo Dia</title>
@@ -11,10 +12,10 @@
     <meta property="og:title" content="Agência Midas - Tráfego Pago para Apostas Online" />
     <meta property="og:description" content="Método científico para escalar bancas com depositantes entrando todo dia. Mais de 1.000 operações já escaladas." />
     <meta property="og:type" content="website" />
-    <meta property="og:image" content="/public/placeholder.svg" />
+    <meta property="og:image" content="/placeholder.svg" />
 
     <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:image" content="/public/placeholder.svg" />
+    <meta name="twitter:image" content="/placeholder.svg" />
     
     <!-- Meta Pixel Code -->
     <script>
@@ -44,8 +45,17 @@
     <script>
       // Remove elementos residuais caso algum script os injete depois do load
       const hideLovable = () => {
-        const nodes = Array.from(document.querySelectorAll('[class*="lovable" i], [id*="lovable" i], a[href*="lovable.dev" i], [data-lovable], .lovable-badge, .lovable-edit-badge'));
+        const nodes = Array.from(document.querySelectorAll('[class*="lovable" i], [id*="lovable" i], a[href*="lovable.dev" i], [data-lovable], .lovable-badge, .lovable-edit-badge, iframe[src*="lovable" i]'));
         for (const el of nodes) { try { el.remove(); } catch (_) { el.style.display = 'none'; } }
+
+        // varrer shadow roots comuns
+        const all = document.querySelectorAll('*');
+        for (const host of all) {
+          if (host.shadowRoot) {
+            const inner = host.shadowRoot.querySelectorAll('[class*="lovable" i], [id*="lovable" i], a[href*="lovable.dev" i], [data-lovable], .lovable-badge, .lovable-edit-badge, iframe[src*="lovable" i]');
+            for (const el of inner) { try { el.remove(); } catch (_) { el.style.display = 'none'; } }
+          }
+        }
       };
       hideLovable();
       new MutationObserver(hideLovable).observe(document.documentElement, { childList: true, subtree: true });
