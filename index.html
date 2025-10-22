@@ -11,11 +11,10 @@
     <meta property="og:title" content="Agência Midas - Tráfego Pago para Apostas Online" />
     <meta property="og:description" content="Método científico para escalar bancas com depositantes entrando todo dia. Mais de 1.000 operações já escaladas." />
     <meta property="og:type" content="website" />
-    <meta property="og:image" content="https://lovable.dev/opengraph-image-p98pqg.png" />
+    <meta property="og:image" content="/public/placeholder.svg" />
 
     <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:site" content="@lovable_dev" />
-    <meta name="twitter:image" content="https://lovable.dev/opengraph-image-p98pqg.png" />
+    <meta name="twitter:image" content="/public/placeholder.svg" />
     
     <!-- Meta Pixel Code -->
     <script>
@@ -33,6 +32,25 @@
   </head>
 
   <body>
+    <style>
+      /* Oculta badges/flutuantes de editores de terceiros, caso injetem no runtime */
+      [class*="lovable" i],
+      [id*="lovable" i],
+      a[href*="lovable.dev" i],
+      [data-lovable],
+      .lovable-badge,
+      .lovable-edit-badge { display: none !important; visibility: hidden !important; opacity: 0 !important; }
+    </style>
+    <script>
+      // Remove elementos residuais caso algum script os injete depois do load
+      const hideLovable = () => {
+        const nodes = Array.from(document.querySelectorAll('[class*="lovable" i], [id*="lovable" i], a[href*="lovable.dev" i], [data-lovable], .lovable-badge, .lovable-edit-badge'));
+        for (const el of nodes) { try { el.remove(); } catch (_) { el.style.display = 'none'; } }
+      };
+      hideLovable();
+      new MutationObserver(hideLovable).observe(document.documentElement, { childList: true, subtree: true });
+      window.addEventListener('load', hideLovable);
+    </script>
     <!-- Meta Pixel Code - noscript -->
     <noscript><img height="1" width="1" style="display:none"
     src="https://www.facebook.com/tr?id=1628527401063108&ev=PageView&noscript=1"
