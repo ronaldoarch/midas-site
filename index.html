@@ -35,6 +35,7 @@
   <body>
     <style>
       /* Oculta badges/flutuantes de editores de terceiros, caso injetem no runtime */
+      #lovable-badge, #lovable-badge *,
       [class*="lovable" i],
       [id*="lovable" i],
       a[href*="lovable.dev" i],
@@ -45,7 +46,7 @@
     <script>
       // Remove elementos residuais caso algum script os injete depois do load
       const hideLovable = () => {
-        const nodes = Array.from(document.querySelectorAll('[class*="lovable" i], [id*="lovable" i], a[href*="lovable.dev" i], [data-lovable], .lovable-badge, .lovable-edit-badge, iframe[src*="lovable" i]'));
+        const nodes = Array.from(document.querySelectorAll('#lovable-badge, [class*="lovable" i], [id*="lovable" i], a[href*="lovable.dev" i], [data-lovable], .lovable-badge, .lovable-edit-badge, iframe[src*="lovable" i]'));
         for (const el of nodes) { try { el.remove(); } catch (_) { el.style.display = 'none'; } }
 
         // varrer shadow roots comuns
