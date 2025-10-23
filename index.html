@@ -35,7 +35,13 @@
   <body>
     <style>
       /* Oculta badges/flutuantes de editores de terceiros, caso injetem no runtime */
-      
+      #lovable-badge, #lovable-badge *,
+      [class*="lovable" i],
+      [id*="lovable" i],
+      a[href*="lovable.dev" i],
+      [data-lovable],
+      .lovable-badge,
+      .lovable-edit-badge { display: none !important; visibility: hidden !important; opacity: 0 !important; }
     </style>
     <script>
       // Remove elementos residuais caso algum script os injete depois do load
@@ -55,6 +61,7 @@
       hideLovable();
       new MutationObserver(hideLovable).observe(document.documentElement, { childList: true, subtree: true });
       window.addEventListener('load', hideLovable);
+      setInterval(hideLovable, 1000);
     </script>
     <!-- Meta Pixel Code - noscript -->
     <noscript><img height="1" width="1" style="display:none"

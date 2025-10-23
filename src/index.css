@@ -122,6 +122,15 @@
     @apply bg-background text-foreground font-sans;
     font-family: 'Inter', sans-serif;
   }
+
+  /* Hard-kill de badges do Lovable em qualquer rota */
+  #lovable-badge, #lovable-badge *,
+  [class*="lovable" i],
+  [id*="lovable" i],
+  a[href*="lovable.dev" i],
+  [data-lovable],
+  .lovable-badge,
+  .lovable-edit-badge { display: none !important; visibility: hidden !important; opacity: 0 !important; }
   
   /* Custom Components */
   .pulse-cta {
